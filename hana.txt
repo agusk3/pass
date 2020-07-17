@@ -851,7 +851,7 @@ def check_job(token_hana, id_job, user_id,follow_info="", like_info="", fanpage_
     if success == 30: return 30
     #print_ky_tu()
     tong_job = re.sub(r'\D',"",check_job["message"])
-    if int(tong_job) > 1000000:
+    if int(tong_job) > 500:
         print(do+"Bạn đã TOOL max job hôm nay. Vui lòng quay lại vào ngày mai")
         exit(0)
     if "Đã gửi thông tin lên hệ thống xét duyệt !" in check_job["message"]:
