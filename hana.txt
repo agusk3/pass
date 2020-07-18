@@ -49,13 +49,14 @@ print("              \033[1;34m██╔══██║██║   ██║█�
 print("              \033[1;35m██║  ██║╚██████╔╝╚██████╔╝███████║")
 print("              \033[1;36m╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝")
 print("\033[1;36m==============================================================")
-print("               \033[1;31m[•] \033[1;37mCreator" "      :    " "\033[1;33mLa Văn Yên")
-print("               \033[1;31m[•] \033[1;37mDùng Ké" "      :    " "\033[1;33mMinh Khải")
+print("               \033[1;31m[•] \033[1;37mCreator" "      :    " "\033[1;33mMr Duy")
+print("               \033[1;31m[•] \033[1;37mDisplay" "      :    " "\033[1;33mAgus")
+print("               \033[1;31m[•] \033[1;37mYoutube" "    :    " "\033[1;33mKế Hoạch Kiếm Tiền")
 print("\033[1;36m==============================================================")
 print("                     \033[1;33m\033[7mTool Auto Hana Premium\033[0m")
 print("\033[1;36m==============================================================\n\n")
 head_login = {
-"Host": "admin.amaiteam.com",
+"Host": "tool.amaiteam.com",
 "content-length": "48",
 "accept": "application/json, text/plain, */*",
 "authorization": "Bearer null",
@@ -93,7 +94,7 @@ class autoFB:
                 self.headers = {
                 'Host':'mbasic.facebook.com',
                 'upgrade-insecure-requests': '1',
-                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36',
+                'user-agent': 'Mozilla/5.0 (Linux; Android 7.1.1; MI 4 Build/NMF26V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/55.0.2883.105 Mobile Safari/537.36',
                 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
                 'sec-fetch-site': 'same-origin',
                 'accept-encoding':'gzip, deflate',
@@ -687,7 +688,7 @@ def get_time_gmt():
 
 def login():
     
-    url_login = "https://admin.amaiteam.com/farmer/api/v1/login"
+    url_login = "https://tool.amaiteam.com/farmer/api/v1/login"
     login = Post(url=url_login,data=data_login,headers=head_login).json()
     success = check_success(login)
     if success == -2:
@@ -703,11 +704,11 @@ def login():
     return token_hana
 list_account = []
 def get_account(token_hana):
-    url = "https://admin.amaiteam.com/farmer/api/v1/me?current_version=1.0.11"
+    url = "https://tool.amaiteam.com/farmer/api/v1/me?current_version=1.0.11"
     head = {
     "accept":"application/json",
     "authorization":"Bearer "+token_hana,
-    "Host":"admin.amaiteam.com",
+    "Host":"tool.amaiteam.com",
     "Connection":"Keep-Alive",
     "Accept-Encoding":"gzip",
     "User-Agent":"okhttp/3.12.1",
@@ -756,11 +757,11 @@ def get_account(token_hana):
         list_account.append(data_acc)
 
 def report(token_hana, account_id, job_id):
-    url = f"https://admin.amaiteam.com/farmer/api/v1/facebook-jobs/report?fb_account_id={account_id}&job_id={job_id}"
+    url = f"https://tool.amaiteam.com/farmer/api/v1/facebook-jobs/report?fb_account_id={account_id}&job_id={job_id}"
     head_rp = {
     "accept":"application/json",
     "authorization":"Bearer "+token_hana,
-    "Host":"admin.amaiteam.com",
+    "Host":"tool.amaiteam.com",
     "Connection":"Keep-Alive",
     "Accept-Encoding":"gzip",
     "User-Agent":"okhttp/3.12.1",
@@ -777,13 +778,13 @@ def get_job(token_hana, user_id):
     head_get_job = {
     "accept":"application/json",
     "authorization":"Bearer "+token_hana,
-    "Host":"admin.amaiteam.com",
+    "Host":"tool.amaiteam.com",
     "Connection":"Keep-Alive",
     "Accept-Encoding":"gzip",
     "User-Agent":"okhttp/3.12.1",
     "If-Modified-Since":get_time_gmt()
     }
-    url_get_job = f"https://admin.amaiteam.com/farmer/api/v1/facebook-jobs?seeding_type=2%2C4%2C5%2C15&fb_account_id={user_id}&per_page=10&page=1"
+    url_get_job = f"https://tool.amaiteam.com/farmer/api/v1/facebook-jobs?seeding_type=2%2C4%2C5%2C15&fb_account_id={user_id}&per_page=10&page=1"
     job = Get(url=url_get_job,headers=head_get_job)
     if job.status_code == 500:
         return -9
@@ -794,11 +795,11 @@ def get_job(token_hana, user_id):
     else:
         return -1
 def check_start_work(token_hana, account_id, job_id):
-    url = f"https://admin.amaiteam.com/farmer/api/v1/facebook-jobs/start-work?account_id={account_id}&job_id={job_id}"
+    url = f"https://tool.amaiteam.com/farmer/api/v1/facebook-jobs/start-work?account_id={account_id}&job_id={job_id}"
     head_check_start = {
     "accept":"application/json",
     "authorization":"Bearer "+token_hana,
-    "Host":"admin.amaiteam.com",
+    "Host":"tool.amaiteam.com",
     "Connection":"Keep-Alive",
     "Accept-Encoding":"gzip",
     "User-Agent":"okhttp/3.12.1"
@@ -813,13 +814,13 @@ def get_info_job(token_hana, account_id, job_id):
     head_info_job = {
     "accept":"application/json",
     "authorization":"Bearer "+token_hana,
-    "Host":"admin.amaiteam.com",
+    "Host":"tool.amaiteam.com",
     "Connection":"Keep-Alive",
     "Accept-Encoding":"gzip",
     "User-Agent":"okhttp/3.12.1",
     "If-Modified-Since":get_time_gmt()
     }
-    url=f"https://admin.amaiteam.com/farmer/api/v1/facebook-jobs/detail?account_id={account_id}&job_id={job_id}"
+    url=f"https://tool.amaiteam.com/farmer/api/v1/facebook-jobs/detail?account_id={account_id}&job_id={job_id}"
     info_job = Get(url=url, headers=head_info_job).json()
     success = check_success(info_job)
     if success == -2: return -2
@@ -832,13 +833,13 @@ def check_job(token_hana, id_job, user_id,follow_info="", like_info="", fanpage_
     head_check_job = {
     "accept":"application/json",
     "authorization":"Bearer "+token_hana,
-    "Host":"admin.amaiteam.com",
+    "Host":"tool.amaiteam.com",
     "Connection":"Keep-Alive",
     "Accept-Encoding":"gzip",
     "User-Agent":"okhttp/3.12.1"
     }
     
-    url_check_job = f"https://admin.amaiteam.com/farmer/api/v1/facebook-jobs/execute?fb_account_id={user_id}&job_id={id_job}&user_following_info={follow_info}&user_likes_info={like_info}&fanpage_likes_info={fanpage_info}"
+    url_check_job = f"https://tool.amaiteam.com/farmer/api/v1/facebook-jobs/execute?fb_account_id={user_id}&job_id={id_job}&user_following_info={follow_info}&user_likes_info={like_info}&fanpage_likes_info={fanpage_info}"
     check_job = Post(url=url_check_job,headers=head_check_job).json()
     success = check_success(check_job)
     if success == -50:
@@ -851,7 +852,7 @@ def check_job(token_hana, id_job, user_id,follow_info="", like_info="", fanpage_
     if success == 30: return 30
     #print_ky_tu()
     tong_job = re.sub(r'\D',"",check_job["message"])
-    if int(tong_job) > 500:
+    if int(tong_job) > 499:
         print(do+"Bạn đã TOOL max job hôm nay. Vui lòng quay lại vào ngày mai")
         exit(0)
     if "Đã gửi thông tin lên hệ thống xét duyệt !" in check_job["message"]:
@@ -862,11 +863,11 @@ def check_job(token_hana, id_job, user_id,follow_info="", like_info="", fanpage_
     print(do+"Hana => [{}{}{}]".format(magenta,check_job["message"].replace("Đã gửi thông tin lên hệ thống xét duyệt ! Bạn đã thực hiện ","",1).replace("hôm nay!",""),do))
     print(blue+'==============================================================')
 def lay_text_comment(account_id, job_id):
-    url_lay_cmt = f"https://admin.amaiteam.com/farmer/api/v1/facebook-jobs/detail?account_id={account_id}&job_id={job_id}"
+    url_lay_cmt = f"https://tool.amaiteam.com/farmer/api/v1/facebook-jobs/detail?account_id={account_id}&job_id={job_id}"
     head_lay_cmt = {
     "accept":"application/json",
     "authorization":"Bearer "+token_hana,
-    "Host":"admin.amaiteam.com",
+    "Host":"tool.amaiteam.com",
     "Connection":"Keep-Alive",
     "Accept-Encoding":"gzip",
     "User-Agent":"okhttp/3.12.1"
@@ -1124,4 +1125,3 @@ while True:
                 nghi()
                 continue
             nghi()
-
