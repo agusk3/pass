@@ -49,6 +49,8 @@ else:
 	print(duong_dan_file)
     print(do+"Bạn đang tool không đúng file, vui lòng không nhân bản file để tool.")
     exit(0)"""
+tk = input(f"{do}[{vang}+{do}] {xanh}Nhập UserName Hana: {vang}")
+mk = input(f"{do}[{vang}+{do}] {xanh}Nhập Mật Khẩu Hana: {vang}")
 os.system("clear")
 print("\033[1;36m==============================================================")
 print("              \033[1;31m █████╗  ██████╗ ██╗   ██╗███████╗")
@@ -62,6 +64,11 @@ print("               \033[1;31m[•] \033[1;37mCreator" "      :    " "\033[1;3
 print("               \033[1;31m[•] \033[1;37mDisplay" "      :    " "\033[1;33mAgus")
 print("\033[1;36m==============================================================")
 print("                     \033[1;33m\033[7mTool Auto Hana Premium\033[0m")
+print("\033[1;36m==============================================================")
+print(f"{do} >>{vang} 50K {xanh} trong {vang}1{xanh} Tháng")
+print(f"{do} >>{xanh} Người Mua: {vang}Trần Minh Khải")
+print(f"{do} >>{xanh} Ngày Mua: {vang}22/07/2020")
+print(f"{do} >> {xanh}Đừng Tool Quá Nhanh Và Nhiều Account Cùng Lúc Tránh Bị Ban IP")
 print("\033[1;36m==============================================================")
 head_login = {
 "Host": "admin.amaiteam.com",
@@ -80,8 +87,6 @@ head_login = {
 "accept-language": "vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5"
     }
 #data_login = {"username":account,"password":password}
-tk = "lvy2003"
-mk = "taoyeumay123"
 data_login = '{"username":"'+tk+'","password":"'+mk+'"}'
 
 host = "https://mbasic.facebook.com"
@@ -695,10 +700,10 @@ def check_success(data):
             return -50
         if "Bạn cần bật chế độ công khai" in msg:
             print(mau+"Hana =>[{}{}{}]".format(do,msg,mau))
-            return -1
+            return -11
         if "Hệ thống không tìm thấy dữ liệu job!" in msg:
             print(mau+"Hana =>[{}{}{}]".format(do,msg,mau))
-            return -3
+            return -33
         if "Job đã có lỗi! Xin vui lòng thử lại sau" in msg:
             print(mau+"Hana =>[{}{}{}]".format(do,msg,mau))
             return 21
@@ -849,7 +854,10 @@ def check_job(token_hana, id_job, user_id,follow_info="", like_info="", fanpage_
     url_check_job = f"https://admin.amaiteam.com/farmer/api/v1/facebook-jobs/execute?fb_account_id={user_id}&job_id={id_job}&user_following_info={follow_info}&user_likes_info={like_info}&fanpage_likes_info={fanpage_info}"
     check_job = Post(url=url_check_job,headers=head_check_job).json()
     success = check_success(check_job)
-    if success == -3:
+    if success == -33:
+    	report(token_hana=token_hana, account_id=id, job_id=j["id"])
+    	return -5
+    if success == -11:
     	report(token_hana=token_hana, account_id=id, job_id=j["id"])
     	return -5
     if success == 88:
@@ -973,7 +981,7 @@ def lam_viec(data_job, user_id):
         elif k == 0: return 0
         elif k == 22: return 22
         elif k == 2: return 2
-        ch = check_job(token_hana=token_hana, id_job=id_job, user_id=user_id, like_info=info_job["user_likes_info"])
+        ch = check_job(token_hana=token_hana, id_job=id_job, user_id=user_id)
         return ch
     elif seeding_type == 5:
         k = AddFriend(basic_post_link).addfriend()
@@ -983,7 +991,8 @@ def lam_viec(data_job, user_id):
         elif k == 0: return 0
         elif k == 22: return 22
         elif k == 2: return 2
-        ch = check_job(token_hana=token_hana, id_job=id_job, user_id=user_id, follow_info=info_job["user_following_info"])
+        sleep(3)
+        ch = check_job(token_hana=token_hana, id_job=id_job, user_id=user_id)
         
         return ch
     else:
